@@ -1,6 +1,8 @@
 extends Node2D
 
 const ENEMY_SCENE: PackedScene = preload("res://scenes/enemy/enemy.tscn")
+const SCORE_LABEL_SCENE: PackedScene = preload("res://scenes/ui/score_label.tscn")
+const GAME_OVER_PANEL_SCENE: PackedScene = preload("res://scenes/ui/game_over_panel.tscn")
 
 var score: int = 0
 var screen_size: Vector2
@@ -20,7 +22,7 @@ func _ready() -> void:
 
 
 func _create_score_label() -> void:
-	score_label = Label.new()
+	score_label = SCORE_LABEL_SCENE.instantiate()
 	score_label.text = "Score: 0"
 	$UI.add_child(score_label)
 
@@ -59,25 +61,9 @@ func game_over() -> void:
 	spawn_timer.stop()
 	survival_timer.stop()
 
-	var panel: Panel = Panel.new()
+	var panel: Panel = GAME_OVER_PANEL_SCENE.instantiate()
 	panel.size = Vector2(300, 200)
 	panel.position = (screen_size - panel.size) / 2
+	panel.set_score(score)
 	$UI.add_child(panel)
 
-	var label: Label = Label.new()
-	label.text = "Game Over!\nScore: %d" % score
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	label.size = panel.size
-	panel.add_child(label)
-
-	var button: Button = Button.new()
-	button.text = "Restart"
-	button.size = Vector2(100, 40)
-	button.position = Vector2((panel.size.x - button.size.x) / 2, panel.size.y - 50)
-	button.pressed.connect(_on_restart_button_pressed)
-	panel.add_child(button)
-
-
-func _on_restart_button_pressed() -> void:
-	get_tree().reload_current_scene()

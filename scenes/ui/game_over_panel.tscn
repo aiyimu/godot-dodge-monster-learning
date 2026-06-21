@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://b4nysuq6wh7ry"]
+
+[ext_resource type="Script" uid="uid://hlqcq41ccvuq" path="res://scripts/ui/game_over_panel.gd" id="1_myhnt"]
+
+[node name="GameOverPanel" type="Panel" unique_id=1850392448]
+script = ExtResource("1_myhnt")
+
+[node name="Label" type="Label" parent="." unique_id=262738986]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 200.0
+text = "Game Over!
+Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="." unique_id=298581963]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 150.0
+offset_right = 200.0
+offset_bottom = 190.0
+text = "Restart"
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
