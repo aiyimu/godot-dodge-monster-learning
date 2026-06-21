@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://chfjob0clwgas"]
+
+[ext_resource type="Script" uid="uid://cp6srbbjca2qu" path="res://scripts/main.gd" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://dlf37gbgc7c52" path="res://scenes/player/player.tscn" id="2_0wfyh"]
+
+[node name="Main" type="Node2D" unique_id=1203301783 groups=["game"]]
+script = ExtResource("1_o5qli")
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=205479400]
+
+[node name="SpawnTimer" type="Timer" parent="EnemySpawner" unique_id=1783315419]
+autostart = true
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1839339121]
+
+[node name="Player" parent="." unique_id=1674415925 groups=["player"] instance=ExtResource("2_0wfyh")]
+position = Vector2(576, 324)
