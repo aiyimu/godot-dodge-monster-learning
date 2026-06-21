@@ -9,7 +9,7 @@ func _ready() -> void:
 	screen_size = get_viewport_rect().size
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var direction: Vector2 = Vector2.ZERO
 	if Input.is_action_pressed("ui_right"):
 		direction.x += 1
